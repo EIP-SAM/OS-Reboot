@@ -1,0 +1,32 @@
+{
+  "name": "os-reboot",
+  "version": "1.0.0",
+  "description": "Some reboot functions for Linux and Windows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EIP-SAM/OS-Reboot.git"
+  },
+  "keywords": [
+    "os",
+    "operating",
+    "system",
+    "reboot",
+    "restart",
+    "node",
+    "js",
+    "javascript",
+    "node.js",
+    "windows",
+    "linux"
+  ],
+  "author": "SAM-Solution team",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/EIP-SAM/OS-Reboot/issues"
+  },
+  "homepage": "https://github.com/EIP-SAM/OS-Reboot#readme"
+}
