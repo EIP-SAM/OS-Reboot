@@ -1,7 +1,7 @@
 var os = require("os");
 var execFile = require('child_process').execFile,
     rebootW = execFile('cmd.exe', ['/c', 'my.bat']);
-//var rebootL = require('reboot').rebootImmediately();
+var rebootL = require('reboot').rebootImmediately();
 
 module.exports.reboot = function(){
 // do the work for windows or linux
@@ -34,6 +34,6 @@ reboot()
 
   else if (os.platform() == "linux"){
     console.log("Tu es sous Linux");
-  //    rebootL();
-  }
+    console.log('loaded.....');
+    rebootL.reboot();}
 }
