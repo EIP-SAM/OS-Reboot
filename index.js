@@ -30,7 +30,7 @@ reboot()
 
       rebootW.on('exit', function (code) {
         console.log('child process exited with code ' + code);
-      });
+      });}
 
   else if (os.platform() == "linux"){
     console.log("Tu es sous Linux");
