@@ -6,7 +6,7 @@ var rebootL = require('reboot').rebootImmediately();
 module.exports.reboot = function(){
 // do the work for windows or linux
 };
-console.log("Quel est mon système ?");
+console.log("What's my OS?");
 
 // OS type
 console.log('type : ' + os.type());
@@ -18,22 +18,23 @@ console.log('platform : ' + os.platform());
 
 reboot()
 {
-  if (os.platform() == "win32") {
-    console.log("Tu es sous Windows");
-      rebootW.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-      });
+    if (os.platform() == "win32") {
+        console.log("Your OS is Windows");
+        rebootW.stdout.on('data', function (data) {
+          console.log('stdout: ' + data);
+        });
 
-      rebootW.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-      });
+        rebootW.stderr.on('data', function (data) {
+          console.log('stderr: ' + data);
+        });
 
-      rebootW.on('exit', function (code) {
-        console.log('child process exited with code ' + code);
-      });}
+        rebootW.on('exit', function (code) {
+          console.log('child process exited with code ' + code);
+        });}
 
-  else if (os.platform() == "linux"){
-    console.log("Tu es sous Linux");
-    console.log('loaded.....');
-    rebootL.reboot();}
+    else if (os.platform() == "linux"){
+      console.log("Your OS is Linux");
+      console.log('loaded.....');
+      rebootL.reboot();}
 }
+
