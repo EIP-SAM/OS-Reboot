@@ -1,40 +1,55 @@
 var os = require("os");
 var execFile = require('child_process').execFile,
-    rebootW = execFile('cmd.exe', ['/c', 'my.bat']);
-var rebootL = require('reboot').rebootImmediately();
 
-module.exports.reboot = function(){
-// do the work for windows or linux
-};
-console.log("What's my OS?");
+    rebootW = execFile('reboot_windows.bat');
 
-// OS type
-console.log('type : ' + os.type());
+var execFile = require('child_process').execFile,
+    rebootL = execFile('./reboot_linux.sh');
 
-// OS platform
-// Returns the operating system platform.
-// Possible values are 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'.
-console.log('platform : ' + os.platform());
+var DISPLAY_LOG = FALSE;
 
-reboot()
+if (DISPLAY_LOG)
 {
-    if (os.platform() == "win32") {
-        console.log("Your OS is Windows");
-        rebootW.stdout.on('data', function (data) {
-          console.log('stdout: ' + data);
-        });
+  // OS type
+  console.log('OS type : ' + os.type());
 
-        rebootW.stderr.on('data', function (data) {
-          console.log('stderr: ' + data);
-        });
-
-        rebootW.on('exit', function (code) {
-          console.log('child process exited with code ' + code);
-        });}
-
-    else if (os.platform() == "linux"){
-      console.log("Your OS is Linux");
-      console.log('loaded.....');
-      rebootL.reboot();}
+  // OS platform
+  // Returns the operating system platform.
+  // Possible values are 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'.
+  console.log('OS platform : ' + os.platform());
 }
 
+
+module.exports.reboot = function()
+{
+  if (os.platform() == "win32") {
+      console.log("Your OS is Windows");
+      rebootW.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+      });
+
+      rebootW.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+      });
+
+      rebootW.on('exit', function (code) {
+        console.log('child process exited with code ' + code);
+      });}
+
+  else if (os.platform() == "linux"){
+      console.log("Your OS is Linux");
+      console.log('loaded.....');
+      }
+
+      rebootL.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+      });
+
+      rebootL.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+      });
+
+      rebootL.on('exit', function (code) {
+        console.log('child process exited with code ' + code);
+      });
+};
