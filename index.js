@@ -20,7 +20,7 @@ if (DISPLAY_LOG)
 }
 
 
-module.exports.reboot = function()
+module.exports = function()
 {
   if (os.platform() == "win32") {
       console.log("Your OS is Windows");
