@@ -6,7 +6,7 @@ var execFile = require('child_process').execFile,
 var execFile = require('child_process').execFile,
     rebootL = execFile('./reboot_linux.sh');
 
-var DISPLAY_LOG = FALSE;
+var DISPLAY_LOG = false;
 
 if (DISPLAY_LOG)
 {
