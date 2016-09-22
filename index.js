@@ -1,10 +1,6 @@
 var os = require("os");
-var execFile = require('child_process').execFile,
-
-    rebootW = execFile('reboot_windows.bat');
-
-var execFile = require('child_process').execFile,
-    rebootL = execFile('./reboot_linux.sh');
+var path = require('path');
+var execFile = require('child_process').execFile;
 
 var DISPLAY_LOG = false;
 
@@ -23,7 +19,7 @@ if (DISPLAY_LOG)
 module.exports = function()
 {
   if (os.platform() == "win32") {
-      console.log("Your OS is Windows");
+      rebootW = execFile(path.join(__dirname, 'reboot_windows.bat'));
       rebootW.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
       });
@@ -34,22 +30,21 @@ module.exports = function()
 
       rebootW.on('exit', function (code) {
         console.log('child process exited with code ' + code);
-      });}
+      });
+    }
 
   else if (os.platform() == "linux"){
-      console.log("Your OS is Linux");
-      console.log('loaded.....');
-      }
-
-      rebootL.stdout.on('data', function (data) {
+    rebootL = execFile(path.join(__dirname, 'reboot_linux.sh'));
+    rebootL.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
-      });
+    });
 
-      rebootL.stderr.on('data', function (data) {
+    rebootL.stderr.on('data', function (data) {
         console.log('stderr: ' + data);
-      });
+    });
 
-      rebootL.on('exit', function (code) {
+    rebootL.on('exit', function (code) {
         console.log('child process exited with code ' + code);
-      });
+    });
+    }
 };
