@@ -34,17 +34,17 @@ module.exports = function()
     }
 
   else if (os.platform() == "linux"){
-    rebootL = execFile(path.join(__dirname, 'reboot_linux.sh'));
-    rebootL.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-    });
+      rebootL = execFile(path.join(__dirname, 'reboot_linux.sh'));
+      rebootL.stdout.on('data', function (data) {
+          console.log('stdout: ' + data);
+      });
 
-    rebootL.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
+      rebootL.stderr.on('data', function (data) {
+          console.log('stderr: ' + data);
+      });
 
-    rebootL.on('exit', function (code) {
-        console.log('child process exited with code ' + code);
-    });
+      rebootL.on('exit', function (code) {
+          console.log('child process exited with code ' + code);
+      });
     }
 };
